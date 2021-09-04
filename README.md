@@ -4,4 +4,4 @@
 >PUCPR - Software Design
 
 ### Patterns
- - [Singleton](https://github.com/gabrielpastori1/software-design/blob/master/src/singleton/README.md)
+ - [Singleton](https://github.com/gabrielpastori1/software-design/tree/main/src/singleton)

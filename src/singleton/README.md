@@ -13,4 +13,3 @@ public static getInstance(): Singleton {
     return Singleton.instance;
 }
 ```
-[Código comentado](https://github.com/gabrielpastori1/software-design/blob/master/src/singleton/README.md)

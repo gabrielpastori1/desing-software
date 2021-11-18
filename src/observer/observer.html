@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <small>Nome</small>
+    <p id="name"></p>
+    <small>Welcome Message</small>
+    <p id="welcome"></p>
+    <hr />
+    <small>Qual seu nome</small><br />
+    <input id="name" /><br>
+    <small>Qual seu aniversario?</small><br />
+    <input id="date" />
+  </body>
+
+  <script>
+    const name = document.querySelector("p#name");
+    const welcomeMessage = document.querySelector("p#welcome");
+
+    const elListener = function (selector, event = "input") {
+      const observers = [];
+
+      function subscribe(observerFunction) {
+        observers.push(observerFunction);
+      }
+
+      function notify(data) {
+        for (let observer of observers) {
+          observer(data);
+        }
+      }
+
+      document.querySelector(selector).addEventListener(event, (e) => {
+        notify(e);
+      });
+
+      return {
+        subscribe,
+      };
+    };
+
+    const inputSubject = elListener("input#name");
+    const dateSubject = elListener("input#date", "mouseover");
+    const nameSubject = elListener("p#name", "click");
+
+    nameSubject.subscribe(() => console.log("CLICK"));
+    
+    //Name
+    inputSubject.subscribe((e) => {
+      name.innerHTML = e.target.value;
+    });
+    //Welcome Message
+    inputSubject.subscribe((e) => {
+      welcomeMessage.innerHTML = `Bem vindo, ${e.target.value}`;
+    });
+  </script>
+</html>
